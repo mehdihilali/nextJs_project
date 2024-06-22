@@ -5,6 +5,7 @@ import { fetchProperty } from '@/utils/requests';
 import PropertyHeaderImage from '@/components/PropertyHeaderImage';
 import {FaArrowLeft} from 'react-icons/fa';
 import PropertyDetails from '@/components/PropertyDetails';
+import Spinner from '@/components/Spinner';
 
 import React from 'react'
 import Link from 'next/link';
@@ -43,6 +44,7 @@ const PropertyPage = () => {
 
   return (
     <>
+      {loading && <Spinner loading={loading}/>}
       {!loading && property && (<>
         <PropertyHeaderImage image={ property.images[0] }/>
         <section>
@@ -60,7 +62,6 @@ const PropertyPage = () => {
         <div className="grid grid-cols-1 md:grid-cols-70/30 w-full gap-6">
 
         <PropertyDetails property= { property }/>
-          {/* <!-- Sidebar --> */}
           <aside className="space-y-4">       
             <button
               className="bg-blue-500 hover:bg-blue-600 text-white font-bold w-full py-2 px-4 rounded-full flex items-center justify-center"
