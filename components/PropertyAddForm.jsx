@@ -7,7 +7,7 @@ const PropertyAddForm = () => {
 
     const [mounted, setMounted] = useState(false);
     const [fields, setFields] = useState({
-        type: '',
+    type: '',
     name: '',
     description: '',
     location: {
@@ -37,9 +37,72 @@ const PropertyAddForm = () => {
         setMounted(true);
     },[]);
 
-    const handleChange = () => {}
-    const handleAmenetiesChange = () => {}
-    const handleImageChange = () => {}
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+
+        // check if nested property (e.g: this is a nested : location.city)
+        if (name.includes('.')){
+            const [outerkey, innerKey] = name.split('.');
+            setFields((prevFields) => ({
+                ...prevFields,
+                [outerkey]: {
+                    ...prevFields[outerkey],
+                    [innerKey]: value
+                }
+            }));
+            // Not nested
+        } else {
+            setFields((prevFields) => ({
+                ...prevFields,
+                [name]: value,
+            }));
+        }
+    };
+
+    const handleAmenetiesChange = (e) => {
+        const { value, checked } = e.target;
+
+        // Clone the current array
+        const updatedAmeneties = [...fields.amenities];
+
+        if (checked) {
+            // Add value to array 
+            updatedAmeneties.push(value);
+        } else {
+            // remove value from array
+            const index = updatedAmeneties.indexOf(value);
+
+            if (index !== -1) {
+                updatedAmeneties.splice(index, 1);
+            }
+        }
+
+        // Update state with updated array
+        setFields((prevFields) => ({
+            ...prevFields,
+            amenities: updatedAmeneties,
+        }));
+    };
+
+    const handleImageChange = (e) => {
+        const { files } = e.target;
+
+        // Clone images array
+        const updatedImages = [...fields.images];
+
+        // Add new files to the array
+        for (const file of files){
+            updatedImages.push(file);
+        }
+
+        // Update state with array of images
+        setFields((prevFields) => ({
+            ...prevFields,
+            images: updatedImages,
+        }));
+    }
+
+
   return mounted &&
     <form>
             <h2 className="text-3xl text-center font-semibold mb-6">
