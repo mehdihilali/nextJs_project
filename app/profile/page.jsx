@@ -6,6 +6,7 @@ import { useSession } from 'next-auth/react';
 import profileDefault from '@/assets/images/profile.png';
 import { useState, useEffect } from 'react';
 import Spinner from '@/components/Spinner';
+import { toast } from 'react-toastify';
 
 const ProfilePage = () => {
 
@@ -55,13 +56,13 @@ const ProfilePage = () => {
         // remove the property from the state:
         const updatedProperties = properties.filter((property) => property._id !== propertyId);
         setProperties(updatedProperties);
-        alert('Property Deleted Successfully');
+        toast.success('Property Deleted Successfully');
       } else {
-        alert('Faild to delete property');
+        toast.error('Faild to delete property');
       }
     } catch (error) {
       console.log(error);
-      alert('Faild to delete property');
+      toast.error('Faild to delete property');
     }
   };
 
