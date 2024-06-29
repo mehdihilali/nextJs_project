@@ -1,5 +1,5 @@
 import React from 'react';
-import {FaBed, FaBath, FaRulerCombined, FaTimes, FaCheck, FaMapMarker} from 'react-icons/fa'
+import {FaBed, FaBath, FaRulerCombined, FaTimes, FaCheck, FaMapMarker} from 'react-icons/fa';
 
 const PropertyDetails = ({ property }) => {
   return (
@@ -93,9 +93,6 @@ const PropertyDetails = ({ property }) => {
                 ))}
                 
               </ul>
-            </div>
-            <div className="bg-white p-6 rounded-lg shadow-md mt-6">
-              <div id="map"></div>
             </div>
           </main>
   )
