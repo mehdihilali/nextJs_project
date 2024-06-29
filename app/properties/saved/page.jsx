@@ -37,8 +37,8 @@ const SavedPropertiesPage = () => {
 
   return loading ? ( <Spinner loading={loading} /> ) : (
     <section className="px-4 py-6">
-        <div class="border-4 border-blue-500 p-6 rounded-lg bg-blue-200">
-            <h1 class="text-2xl mb-4 text-center">Saved Properties</h1>
+        <div className="border-4 border-blue-500 p-6 rounded-lg bg-blue-200">
+            <h1 className="text-2xl mb-4 text-center">Saved Properties</h1>
         </div>
       <div className="container-xl lg:container m-auto px-4 py-6">
 
